@@ -1,0 +1,314 @@
+{
+  "entities": {
+    "QuizRoom": {
+      "title": "QuizRoom",
+      "description": "Published quiz room containing questions A-E, answers, and explanations.",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 12,
+          "pattern": "^[A-Z0-9_-]+$",
+          "description": "Unique uppercase room code."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Quiz title or subject name."
+        },
+        "questions": {
+          "type": "array",
+          "description": "Bounded list of up to 100 quiz question maps."
+        },
+        "ownerUid": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "description": "UID of the admin who published the room."
+        },
+        "status": {
+          "type": "string",
+          "description": "Room state controlled only by Admin: 'waiting' or 'started'."
+        },
+        "category": {
+          "type": "string",
+          "maxLength": 40,
+          "description": "Portal category for the quiz room."
+        },
+        "openAt": {
+          "type": "string",
+          "maxLength": 40,
+          "description": "Optional ISO-8601 timestamp when the quiz opens."
+        },
+        "closeAt": {
+          "type": "string",
+          "maxLength": 40,
+          "description": "Optional ISO-8601 timestamp when the quiz closes."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the room was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the room was last updated."
+        }
+      },
+      "required": ["code", "title", "questions", "ownerUid", "createdAt", "updatedAt"]
+    },
+    "HistoryRecord": {
+      "title": "HistoryRecord",
+      "description": "Permanent record of a participant's quiz score and digital certificate.",
+      "type": "object",
+      "properties": {
+        "roomCode": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 12,
+          "pattern": "^[A-Z0-9_-]+$",
+          "description": "Room code where the quiz was completed."
+        },
+        "quizTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Title of the completed quiz."
+        },
+        "playerName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60,
+          "description": "Participant display name printed on certificate."
+        },
+        "grade": {
+          "type": "number",
+          "description": "Final grade from 0 to 100."
+        },
+        "points": {
+          "type": "number",
+          "description": "Total points earned including streaks."
+        },
+        "correctCount": {
+          "type": "number",
+          "description": "Number of correct answers."
+        },
+        "totalQuestions": {
+          "type": "number",
+          "description": "Total number of questions in the quiz."
+        },
+        "rank": {
+          "type": "number",
+          "description": "Participant rank in the room."
+        },
+        "certificateId": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 40,
+          "pattern": "^[A-Z0-9-]+$",
+          "description": "Unique digital certificate verification ID."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the record was persisted."
+        }
+      },
+      "required": [
+        "roomCode",
+        "quizTitle",
+        "playerName",
+        "grade",
+        "points",
+        "correctCount",
+        "totalQuestions",
+        "rank",
+        "certificateId",
+        "createdAt"
+      ]
+    },
+    "AdminUser": {
+      "title": "AdminUser",
+      "description": "Verified administrator role record.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_-]+$"
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["uid", "email", "createdAt"]
+    },
+    "LobbyPlayerPresence": {
+      "title": "LobbyPlayerPresence",
+      "description": "Live 3D lobby presence document for a participant currently in a room.",
+      "type": "object",
+      "properties": {
+        "playerId": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_-]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60
+        },
+        "avatar": {
+          "type": "object",
+          "description": "3D avatar customization config."
+        },
+        "avatarLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60
+        },
+        "photoUrl": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "joinedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["playerId", "name", "avatar", "avatarLabel", "joinedAt"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Private participant profile, registration metadata, uploaded photo, SKD target summary, and avatar stored in /users/{uid}.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "username": { "type": "string", "maxLength": 40 },
+        "email": { "type": "string", "maxLength": 200 },
+        "displayName": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "photoUrl": { "type": "string", "maxLength": 400000 },
+        "school": { "type": "string", "maxLength": 120 },
+        "phone": { "type": "string", "maxLength": 24 },
+        "targetTrack": { "type": "string", "enum": ["utbk", "kedinasan", "both"] },
+        "targetCampus": { "type": "string", "maxLength": 120 },
+        "authMethod": { "type": "string", "enum": ["password", "google", "email"] },
+        "savedSkdSummary": { "type": "object" },
+        "avatar": { "type": "object" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "displayName", "avatar", "updatedAt"]
+    },
+    "StudyMaterial": {
+      "title": "StudyMaterial",
+      "description": "Admin-uploaded study material module for UTBK-SNBT, Modul TKA, Kelas X-XII, or Kedinasan with optional YouTube video and PPT links.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 3, "maxLength": 80 },
+        "portal": { "type": "string", "enum": ["utbk", "tka", "sma", "kedinasan"] },
+        "grade": { "type": "string", "enum": ["X", "XI", "XII"] },
+        "tkaTrack": { "type": "string", "enum": ["Saintek", "Soshum"] },
+        "subject": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "subtitle": { "type": "string", "maxLength": 200 },
+        "readMinutes": { "type": "number" },
+        "summary": { "type": "string", "minLength": 1, "maxLength": 4000 },
+        "keyPoints": { "type": "array" },
+        "formulas": { "type": "array" },
+        "youtubeUrl": { "type": "string", "maxLength": 300 },
+        "pptUrl": { "type": "string", "maxLength": 500 },
+        "pptName": { "type": "string", "maxLength": 160 },
+        "ownerUid": { "type": "string", "maxLength": 128 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "portal", "subject", "title", "summary", "keyPoints", "formulas", "ownerUid", "updatedAt"]
+    },
+    "LiveTeachingSession": {
+      "title": "LiveTeachingSession",
+      "description": "Admin-managed Live Teaching Zoom class session visible to all students.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 3, "maxLength": 80 },
+        "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "tutorName": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "category": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "scheduleLabel": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "zoomUrl": { "type": "string", "minLength": 8, "maxLength": 500 },
+        "isLive": { "type": "boolean" },
+        "ownerUid": { "type": "string", "maxLength": 128 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "title", "tutorName", "category", "scheduleLabel", "zoomUrl", "isLive", "ownerUid", "updatedAt"]
+    },
+    "SiteSettings": {
+      "title": "SiteSettings",
+      "description": "Public site branding, announcement, and official Play Store / App Store / Microsoft Store distribution settings.",
+      "type": "object",
+      "properties": {
+        "brandName": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "heroTagline": { "type": "string", "maxLength": 160 },
+        "heroTitle": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "heroDescription": { "type": "string", "maxLength": 400 },
+        "announcement": { "type": "string", "maxLength": 300 },
+        "founderPhoto": { "type": "string", "maxLength": 400000 },
+        "playStoreUrl": { "type": "string", "maxLength": 400 },
+        "appStoreUrl": { "type": "string", "maxLength": 400 },
+        "microsoftStoreUrl": { "type": "string", "maxLength": 400 },
+        "androidPackageId": { "type": "string", "maxLength": 120 },
+        "iosBundleId": { "type": "string", "maxLength": 120 },
+        "appleTeamId": { "type": "string", "maxLength": 20 },
+        "microsoftStoreId": { "type": "string", "maxLength": 80 },
+        "microsoftAppGuid": { "type": "string", "maxLength": 48 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["brandName", "heroTagline", "heroTitle", "heroDescription", "announcement", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/rooms/{roomCode}": {
+      "schema": { "$ref": "#/entities/QuizRoom" },
+      "description": "Published quiz rooms readable by exact code and writable only by verified admins."
+    },
+    "/rooms/{roomCode}/players/{playerId}": {
+      "schema": { "$ref": "#/entities/LobbyPlayerPresence" },
+      "description": "Real-time 3D lobby participants who joined a room."
+    },
+    "/materials/{materialId}": {
+      "schema": { "$ref": "#/entities/StudyMaterial" },
+      "description": "Admin-uploaded study materials for UTBK-SNBT, Modul TKA, Kelas X-XII, and Kedinasan."
+    },
+    "/liveSessions/{sessionId}": {
+      "schema": { "$ref": "#/entities/LiveTeachingSession" },
+      "description": "Admin-managed Live Teaching Zoom sessions readable by everyone and writable only by verified admins."
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "#/entities/SiteSettings" },
+      "description": "Site branding & app store distribution metadata readable publicly for site doc and writable by verified admins."
+    },
+    "/users/{uid}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Private participant profile & 3D avatar stored per Google account."
+    },
+    "/users/{uid}/history/{recordId}": {
+      "schema": { "$ref": "#/entities/HistoryRecord" },
+      "description": "Personal quiz score & certificate history stored per participant email."
+    },
+    "/history/{recordId}": {
+      "schema": { "$ref": "#/entities/HistoryRecord" },
+      "description": "Master quiz scores and certificate archive. Append-only for authenticated participants; full list/delete restricted to verified admins."
+    },
+    "/admins/{uid}": {
+      "schema": { "$ref": "#/entities/AdminUser" },
+      "description": "Admin role registry readable by owner/admin and writable only by bootstrapped admin."
+    }
+  }
+}

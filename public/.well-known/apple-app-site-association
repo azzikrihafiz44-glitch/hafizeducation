@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "TEAMID1234.com.hafizeducation.app",
+        "paths": ["/", "/?*"]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["TEAMID1234.com.hafizeducation.app"]
+  }
+}

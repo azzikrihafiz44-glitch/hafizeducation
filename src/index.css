@@ -1,0 +1,889 @@
+@import "tailwindcss";
+
+* {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.font-display {
+  font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.025em;
+}
+
+.font-hud {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Luminous Starlight Gradient for Galaxy Headings */
+.text-gold-gradient {
+  background: linear-gradient(115deg, #f8fafc 0%, #7dd3fc 38%, #a5b4fc 72%, #5eead4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+html {
+  background: #060918;
+  color: #f1f5f9;
+  overflow-x: hidden;
+  max-width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  background: transparent !important;
+  color: #f1f5f9;
+  overflow-x: hidden;
+  max-width: 100%;
+  min-height: 100vh;
+}
+
+/* Deep Space Galaxy Nebula Canvas */
+.galaxy-nebula-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 68% 54% at 12% 14%, rgba(56, 189, 248, 0.24) 0%, transparent 62%),
+    radial-gradient(ellipse 62% 52% at 88% 18%, rgba(129, 140, 248, 0.28) 0%, transparent 60%),
+    radial-gradient(ellipse 58% 48% at 52% 94%, rgba(168, 85, 247, 0.22) 0%, transparent 62%),
+    radial-gradient(ellipse 46% 42% at 82% 76%, rgba(45, 212, 191, 0.16) 0%, transparent 56%),
+    radial-gradient(ellipse 42% 38% at 18% 72%, rgba(99, 102, 241, 0.2) 0%, transparent 58%),
+    linear-gradient(145deg, #040714 0%, #091028 48%, #0e1330 100%);
+}
+
+.galaxy-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(125, 211, 252, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(165, 180, 252, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Twinkling Starfield */
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 0.28;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+.galaxy-star {
+  position: absolute;
+  border-radius: 9999px;
+  animation: starTwinkle 3.5s ease-in-out infinite;
+}
+
+/* Diagonal Shooting Stars (Meteors) */
+@keyframes shootingMeteor {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-32deg);
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  24% {
+    transform: translate3d(-420px, 260px, 0) rotate(-32deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(-420px, 260px, 0) rotate(-32deg);
+    opacity: 0;
+  }
+}
+
+.shooting-star {
+  position: absolute;
+  width: 130px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(224, 242, 254, 0.95), rgba(56, 189, 248, 0.5), transparent);
+  box-shadow: 0 0 12px rgba(125, 211, 252, 0.85);
+  opacity: 0;
+}
+
+.shooting-star-1 {
+  top: 12%;
+  right: 16%;
+  animation: shootingMeteor 7.5s linear 1.2s infinite;
+}
+
+.shooting-star-2 {
+  top: 32%;
+  right: 4%;
+  animation: shootingMeteor 10.5s linear 4.8s infinite;
+}
+
+.shooting-star-3 {
+  top: 8%;
+  right: 48%;
+  animation: shootingMeteor 13s linear 8.4s infinite;
+}
+
+/* Zero-Gravity Floating Astronaut Animations */
+@keyframes astroFloatPrimary {
+  0%, 100% {
+    transform: translate3d(0px, 0px, 0px) rotate(-4deg);
+  }
+  50% {
+    transform: translate3d(-12px, -20px, 0px) rotate(5deg);
+  }
+}
+
+@keyframes astroFloatSecondary {
+  0%, 100% {
+    transform: translate3d(0px, 0px, 0px) rotate(8deg);
+  }
+  50% {
+    transform: translate3d(14px, -16px, 0px) rotate(-6deg);
+  }
+}
+
+@keyframes astroWave {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(9deg);
+  }
+}
+
+@keyframes astroThrusterPulse {
+  0%, 100% {
+    opacity: 0.65;
+    transform: scaleY(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.14);
+  }
+}
+
+@keyframes planetFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+.astro-float-primary {
+  animation: astroFloatPrimary 7.5s ease-in-out infinite;
+}
+
+.astro-float-secondary {
+  animation: astroFloatSecondary 9.5s ease-in-out infinite;
+}
+
+.astro-wave-arm {
+  transform-origin: 138px 112px;
+  animation: astroWave 3.2s ease-in-out infinite;
+}
+
+.astro-thruster {
+  transform-origin: 60px 152px;
+  animation: astroThrusterPulse 1.4s ease-in-out infinite;
+}
+
+.galaxy-planet-float {
+  animation: planetFloat 11s ease-in-out infinite;
+}
+
+/* Living Nebula Aurora Clouds */
+@keyframes nebulaDrift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(28px, -18px, 0) scale(1.08);
+    opacity: 0.82;
+  }
+}
+
+.nebula-aurora-1 {
+  position: absolute;
+  top: -12%;
+  left: -8%;
+  width: 58vw;
+  height: 54vh;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.24) 0%, rgba(99, 102, 241, 0.14) 45%, transparent 72%);
+  filter: blur(52px);
+  animation: nebulaDrift 18s ease-in-out infinite;
+}
+
+.nebula-aurora-2 {
+  position: absolute;
+  bottom: -14%;
+  right: -10%;
+  width: 60vw;
+  height: 56vh;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.22) 0%, rgba(236, 72, 153, 0.11) 42%, transparent 72%);
+  filter: blur(56px);
+  animation: nebulaDrift 22s ease-in-out 4s infinite reverse;
+}
+
+/* Animated Cruising Space Rocket */
+@keyframes rocketCruise {
+  0% {
+    transform: translate3d(-14vw, 18vh, 0) rotate(32deg) scale(0.85);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.85;
+  }
+  88% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(114vw, -36vh, 0) rotate(32deg) scale(1);
+    opacity: 0;
+  }
+}
+
+.cosmic-rocket-flight {
+  position: absolute;
+  top: 42%;
+  left: 0;
+  animation: rocketCruise 28s linear 2s infinite;
+  opacity: 0;
+}
+
+/* Interactive Cosmic Portal Cards */
+.cosmic-portal-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.cosmic-portal-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(125, 211, 252, 0.62);
+  box-shadow:
+    0 24px 52px rgba(2, 6, 23, 0.72),
+    0 0 36px rgba(56, 189, 248, 0.22),
+    inset 0 1px 0 rgba(224, 242, 254, 0.26);
+}
+
+/* Deep Space Obsidian Glass Cards */
+.glass-card {
+  position: relative;
+  background: linear-gradient(
+    145deg,
+    rgba(13, 21, 48, 0.8) 0%,
+    rgba(17, 25, 58, 0.84) 55%,
+    rgba(15, 23, 52, 0.8) 100%
+  );
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  box-shadow:
+    0 20px 48px rgba(2, 6, 23, 0.55),
+    0 0 28px rgba(56, 189, 248, 0.08),
+    inset 0 1px 0 rgba(224, 242, 254, 0.12);
+  backdrop-filter: blur(20px);
+}
+
+.hero-glow-card {
+  position: relative;
+  background: linear-gradient(
+    142deg,
+    rgba(14, 23, 54, 0.84) 0%,
+    rgba(20, 29, 68, 0.86) 52%,
+    rgba(15, 25, 58, 0.84) 100%
+  );
+  border: 1px solid rgba(125, 211, 252, 0.32);
+  box-shadow:
+    0 24px 60px rgba(2, 6, 23, 0.62),
+    0 0 42px rgba(99, 102, 241, 0.16),
+    inset 0 1px 0 rgba(224, 242, 254, 0.16);
+  backdrop-filter: blur(22px);
+}
+
+.holo-top-beam::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 14%;
+  right: 14%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #38bdf8, #818cf8, #2dd4bf, transparent);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+@keyframes holoScan {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  80% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(420%);
+    opacity: 0;
+  }
+}
+
+.holo-scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 24%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(56, 189, 248, 0.14) 48%,
+    rgba(129, 140, 248, 0.14) 52%,
+    transparent 100%
+  );
+  pointer-events: none;
+  animation: holoScan 6s ease-in-out infinite;
+}
+
+/* Primary Cosmic CTA Button */
+.btn-gold {
+  background: linear-gradient(125deg, #0284c7 0%, #4f46e5 52%, #0d9488 100%);
+  color: #ffffff;
+  border: 1px solid rgba(186, 230, 253, 0.45);
+  box-shadow:
+    0 10px 28px rgba(56, 189, 248, 0.28),
+    0 0 22px rgba(99, 102, 241, 0.28),
+    inset 0 1px 0 rgba(224, 242, 254, 0.4);
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.btn-gold:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow:
+    0 14px 36px rgba(56, 189, 248, 0.38),
+    0 0 32px rgba(129, 140, 248, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.btn-gold:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+}
+
+.btn-3d {
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s ease, filter 0.18s ease;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.45), inset 0 1px 0 rgba(224, 242, 254, 0.25);
+}
+
+.btn-3d:hover:not(:disabled) {
+  transform: translateY(-1.5px);
+  filter: brightness(1.06);
+}
+
+.btn-3d:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* Modern Quiz Choice Surface */
+.quiz-choice-btn {
+  background: rgba(15, 23, 42, 0.78);
+  border-color: rgba(148, 163, 184, 0.22);
+  color: #f8fafc;
+  box-shadow: 0 2px 10px rgba(2, 6, 23, 0.25);
+}
+.quiz-choice-btn:hover:not(:disabled) {
+  background: rgba(30, 41, 59, 0.92);
+  border-color: rgba(99, 102, 241, 0.55);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.4);
+  transform: translateY(-1px);
+}
+.quiz-choice-key {
+  background: rgba(30, 41, 59, 0.95);
+  border-color: rgba(148, 163, 184, 0.3);
+  color: #e2e8f0;
+}
+.quiz-choice-btn:hover:not(:disabled) .quiz-choice-key {
+  background: #4f46e5;
+  border-color: #818cf8;
+  color: #ffffff;
+}
+
+/* Light Mode Theme Overrides */
+html[data-theme='light'] {
+  background: linear-gradient(145deg, #eef2ff 0%, #f8fafc 48%, #f1f5f9 100%) !important;
+  color: #0f172a !important;
+}
+
+html[data-theme='light'] body {
+  background: transparent !important;
+  color: #0f172a !important;
+}
+
+html[data-theme='light'] .galaxy-nebula-bg {
+  background:
+    radial-gradient(ellipse 68% 54% at 12% 14%, rgba(56, 189, 248, 0.22) 0%, transparent 62%),
+    radial-gradient(ellipse 62% 52% at 88% 18%, rgba(129, 140, 248, 0.24) 0%, transparent 60%),
+    radial-gradient(ellipse 58% 48% at 52% 94%, rgba(168, 85, 247, 0.16) 0%, transparent 62%),
+    radial-gradient(ellipse 46% 42% at 82% 76%, rgba(45, 212, 191, 0.16) 0%, transparent 56%),
+    linear-gradient(145deg, #eef2ff 0%, #f8fafc 50%, #f1f5f9 100%) !important;
+}
+
+html[data-theme='light'] .galaxy-grid-overlay {
+  background-image:
+    linear-gradient(rgba(79, 70, 229, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.06) 1px, transparent 1px) !important;
+}
+
+html[data-theme='light'] .galaxy-star {
+  opacity: 0.35 !important;
+}
+
+html[data-theme='light'] .text-gold-gradient {
+  background: linear-gradient(115deg, #0f172a 0%, #0369a1 38%, #4f46e5 72%, #0f766e 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+html[data-theme='light'] header {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+html[data-theme='light'] .glass-card,
+html[data-theme='light'] .hero-glow-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.96)) !important;
+  border-color: rgba(99, 102, 241, 0.22) !important;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08) !important;
+  color: #0f172a;
+}
+
+html[data-theme='light'] .text-white,
+html[data-theme='light'] .text-slate-100,
+html[data-theme='light'] .text-slate-200 {
+  color: #0f172a !important;
+}
+
+html[data-theme='light'] .text-slate-300,
+html[data-theme='light'] .text-slate-400 {
+  color: #475569 !important;
+}
+
+html[data-theme='light'] .text-sky-100,
+html[data-theme='light'] .text-sky-200,
+html[data-theme='light'] .text-sky-300,
+html[data-theme='light'] .text-cyan-200,
+html[data-theme='light'] .text-cyan-300 {
+  color: #0369a1 !important;
+}
+
+html[data-theme='light'] .text-teal-200,
+html[data-theme='light'] .text-teal-300 {
+  color: #0f766e !important;
+}
+
+html[data-theme='light'] .text-indigo-200,
+html[data-theme='light'] .text-indigo-300,
+html[data-theme='light'] .text-purple-300 {
+  color: #4338ca !important;
+}
+
+html[data-theme='light'] .text-amber-200,
+html[data-theme='light'] .text-amber-300 {
+  color: #b45309 !important;
+}
+
+html[data-theme='light'] .bg-slate-900\/85,
+html[data-theme='light'] .bg-slate-900\/80,
+html[data-theme='light'] .bg-slate-900\/75,
+html[data-theme='light'] .bg-slate-900\/70,
+html[data-theme='light'] .bg-slate-900\/65,
+html[data-theme='light'] .bg-slate-900\/60,
+html[data-theme='light'] .bg-slate-950\/90,
+html[data-theme='light'] .bg-slate-950\/80,
+html[data-theme='light'] .bg-slate-950\/70,
+html[data-theme='light'] .bg-slate-900,
+html[data-theme='light'] .bg-slate-800\/85,
+html[data-theme='light'] .bg-slate-800 {
+  background-color: #f1f5f9 !important;
+  color: #0f172a;
+}
+
+html[data-theme='light'] .btn-gold,
+html[data-theme='light'] .btn-gold * {
+  color: #ffffff !important;
+}
+
+html[data-theme='light'] .quiz-choice-btn {
+  background: #ffffff !important;
+  border-color: rgba(148, 163, 184, 0.42) !important;
+  color: #0f172a !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05) !important;
+}
+html[data-theme='light'] .quiz-choice-btn:hover:not(:disabled) {
+  background: #eef2ff !important;
+  border-color: rgba(79, 70, 229, 0.55) !important;
+}
+html[data-theme='light'] .quiz-choice-key {
+  background: #f1f5f9 !important;
+  border-color: rgba(148, 163, 184, 0.45) !important;
+  color: #334155 !important;
+}
+html[data-theme='light'] .quiz-choice-btn:hover:not(:disabled) .quiz-choice-key {
+  background: #4f46e5 !important;
+  border-color: #4f46e5 !important;
+  color: #ffffff !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.65);
+  border-radius: 999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(125, 211, 252, 0.35);
+  border-radius: 999px;
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.animate-float {
+  animation: floatSlow 3.6s ease-in-out infinite;
+}
+
+.speech-bubble-3d {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes introLogoPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.35) rotate(-14deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.08) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes introTitleReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+    letter-spacing: 0.35em;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0.14em;
+  }
+}
+
+@keyframes introSubReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes introOrbitSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes introOrbitReverse {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes introProgressFill {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes introSheen {
+  0% {
+    transform: translateX(-140%) skewX(-22deg);
+  }
+  100% {
+    transform: translateX(240%) skewX(-22deg);
+  }
+}
+
+@keyframes introShockwave {
+  0% {
+    opacity: 0.75;
+    transform: scale(0.65);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.85);
+  }
+}
+
+.intro-logo-pop {
+  animation: introLogoPop 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.intro-title-reveal {
+  opacity: 0;
+  animation: introTitleReveal 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.42s forwards;
+}
+
+.intro-sub-reveal {
+  opacity: 0;
+  animation: introSubReveal 0.75s ease-out 0.78s forwards;
+}
+
+.intro-orbit-cw {
+  animation: introOrbitSpin 9s linear infinite;
+}
+
+.intro-orbit-ccw {
+  animation: introOrbitReverse 13s linear infinite;
+}
+
+.intro-progress-bar {
+  transform-origin: left center;
+  animation: introProgressFill 2.35s cubic-bezier(0.4, 0, 0.2, 1) 0.25s forwards;
+  transform: scaleX(0);
+}
+
+.intro-sheen {
+  animation: introSheen 1.4s ease-in-out 0.65s forwards;
+  transform: translateX(-140%) skewX(-22deg);
+}
+
+.intro-shockwave {
+  animation: introShockwave 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+}
+
+@keyframes introConicSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes introBeamSweep {
+  0%, 100% {
+    opacity: 0.35;
+    transform: translateX(-8%) rotate(-18deg) scaleY(1);
+  }
+  50% {
+    opacity: 0.72;
+    transform: translateX(8%) rotate(-14deg) scaleY(1.08);
+  }
+}
+
+@keyframes introTagFade {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.intro-conic-halo {
+  background: conic-gradient(
+    from 0deg,
+    rgba(45, 212, 191, 0.9),
+    rgba(56, 189, 248, 0.2),
+    rgba(129, 140, 248, 0.95),
+    rgba(251, 191, 36, 0.65),
+    rgba(45, 212, 191, 0.9)
+  );
+  animation: introConicSpin 4.8s linear infinite;
+}
+
+.intro-beam-sweep {
+  animation: introBeamSweep 5.5s ease-in-out infinite;
+}
+
+.intro-tag-fade {
+  opacity: 0;
+  animation: introTagFade 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.95s forwards;
+}
+
+/* 3D Flashcard flip helpers */
+.flashcard-perspective {
+  perspective: 1100px;
+}
+
+.flashcard-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.flashcard-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flashcard-front {
+  transform: rotateY(0deg);
+}
+
+.flashcard-back {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .galaxy-star,
+  .shooting-star,
+  .astro-float-primary,
+  .astro-float-secondary,
+  .astro-wave-arm,
+  .astro-thruster,
+  .galaxy-planet-float,
+  .nebula-aurora-1,
+  .nebula-aurora-2,
+  .cosmic-rocket-flight,
+  .holo-scanline,
+  .intro-astro-bob,
+  .intro-astro-wave {
+    animation: none !important;
+  }
+}
+
+/* Per-User Web Settings Overrides */
+html[data-motion='reduced'] .galaxy-star,
+html[data-motion='reduced'] .shooting-star,
+html[data-motion='reduced'] .astro-float-primary,
+html[data-motion='reduced'] .astro-float-secondary,
+html[data-motion='reduced'] .astro-wave-arm,
+html[data-motion='reduced'] .astro-thruster,
+html[data-motion='reduced'] .galaxy-planet-float,
+html[data-motion='reduced'] .nebula-aurora-1,
+html[data-motion='reduced'] .nebula-aurora-2,
+html[data-motion='reduced'] .cosmic-rocket-flight,
+html[data-motion='reduced'] .holo-scanline,
+html[data-motion='reduced'] .animate-pulse,
+html[data-motion='reduced'] .animate-float {
+  animation: none !important;
+  transition-duration: 0.01ms !important;
+}
+
+html[data-contrast='high'] .glass-card,
+html[data-contrast='high'] .hero-glow-card {
+  background: rgba(10, 16, 38, 0.96) !important;
+  border-color: rgba(125, 211, 252, 0.45) !important;
+  backdrop-filter: none !important;
+}
+
+html[data-theme='light'][data-contrast='high'] .glass-card,
+html[data-theme='light'][data-contrast='high'] .hero-glow-card {
+  background: #ffffff !important;
+  border-color: rgba(79, 70, 229, 0.4) !important;
+}
+
+html[data-density='compact'] main {
+  padding-top: 1.25rem !important;
+  padding-bottom: 1.75rem !important;
+}
+
+html[data-accent='emerald'] .btn-gold {
+  background: linear-gradient(125deg, #059669 0%, #0d9488 52%, #0284c7 100%) !important;
+  border-color: rgba(110, 231, 183, 0.5) !important;
+}
+html[data-accent='emerald'] .text-gold-gradient {
+  background: linear-gradient(115deg, #f8fafc 0%, #6ee7b7 38%, #5eead4 72%, #38bdf8 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+html[data-theme='light'][data-accent='emerald'] .text-gold-gradient {
+  background: linear-gradient(115deg, #064e3b 0%, #059669 45%, #0284c7 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+html[data-accent='purple'] .btn-gold {
+  background: linear-gradient(125deg, #7c3aed 0%, #a21caf 55%, #4f46e5 100%) !important;
+  border-color: rgba(216, 180, 254, 0.5) !important;
+}
+html[data-accent='purple'] .text-gold-gradient {
+  background: linear-gradient(115deg, #f8fafc 0%, #d8b4fe 38%, #f0abfc 72%, #818cf8 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+html[data-theme='light'][data-accent='purple'] .text-gold-gradient {
+  background: linear-gradient(115deg, #3b0764 0%, #7c3aed 45%, #a21caf 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+html[data-accent='gold'] .btn-gold {
+  background: linear-gradient(125deg, #d97706 0%, #ea580c 52%, #ca8a04 100%) !important;
+  border-color: rgba(253, 224, 71, 0.55) !important;
+}
+html[data-accent='gold'] .text-gold-gradient {
+  background: linear-gradient(115deg, #fefce8 0%, #fde047 38%, #fb923c 72%, #fbbf24 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+html[data-theme='light'][data-accent='gold'] .text-gold-gradient {
+  background: linear-gradient(115deg, #78350f 0%, #d97706 48%, #b45309 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+

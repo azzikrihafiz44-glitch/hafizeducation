@@ -1,0 +1,6 @@
+{
+  "name": "Hafiz Education - Platform Kuis Interaktif 3D & Sertifikat Digital",
+  "description": "Platform kuis interaktif multiplayer dengan karakter 3D, Lobi Kampus 3D, soal pilihan ganda A-E lengkap dengan pembahasan, podium peringkat, Quiz Studio Admin, dan E-Sertifikat Digital HD.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
